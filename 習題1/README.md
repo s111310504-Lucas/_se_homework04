@@ -1,52 +1,37 @@
-# 111310405 My Curl App
+# My Curl App (`my_curl`)
 
-一個使用 Python 與 `httpx` / `rich` 實作的現代化類 curl 命令列工具。
+[![Python CI](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/actions)
+![Python Version](https://img.shields.io/badge/python-3.9%2B-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## 核心功能
-- 支援 GET, POST, PUT, DELETE 等 HTTP 方法
-- 支援自訂 Header (`-H`) 與 Request Body (`-d`)
-- 自動彩色與高亮排版 JSON 輸出
-- 支援將回應儲存至檔案 (`-o`) 與印出 HTTP Header (`-i`)
+`my_curl` 是一個使用 **Python**、**`httpx`** 與 **`rich`** 實作的現代化類 `curl` 命令列（CLI）工具。
 
-## 安裝與執行
-```bash
-pip install -r requirements.txt
+本專案為 **現代軟體工程（Modern Software Engineering）** 課程習題，旨在透過 **AI 協同開發（AI-Driven Development / OpenCode）** 與 **CI/CD 自動化測試**，展現現代軟體設計原則、模組化架構與高品質代碼開發流程。
 
-# 測試 GET 請求
-python main.py [https://httpbin.org/get](https://httpbin.org/get)
+---
 
-# 執行單元測試
-pytest
+## 🌟 核心特色 (Key Features)
 
-### 第三步：加分項！設定 GitHub Actions 自動化測試 (CI)
+- 🚀 **完整 HTTP 方法支援**：支援 `GET`、`POST`、`PUT`、`DELETE` 等常見請求。
+- 🎨 **現代化終端機美化 (Rich Console)**：自動針對 JSON 回應進行語法高亮（Syntax Highlighting）與格式化排版。
+- 📋 **詳細標頭檢視 (`-i`)**：提供格式化的表格以檢視 HTTP Response Headers 與狀態碼。
+- 💾 **回應輸出控制 (`-o`)**：可直接將伺服器回應寫入本機指定檔案。
+- 🛡️ **堅固的錯誤處理**：自動補充缺失的 URL 協定（如 `http://`），並處理網路連線逾時與例外狀況。
+- 🧪 **自動化測試與 CI 流程**：內建 `pytest` 單元測試，並配置 GitHub Actions CI 流程。
 
-在現代軟體工程中，**每一次 Push 自動執行測試**是標準流程。
+---
 
-1. 在專案資料夾下建立資料夾結構：`.github/workflows/`
-2. 在裡面新增一個檔案 `ci.yml`：
+## 📂 專案架構 (Project Structure)
 
-```yaml
-name: Python CI
+專案採用清晰的模組化結構，分離核心邏輯、測試案例與自動化腳本：
 
-on: [push, pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/python-action@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run pytest
-        run: |
-          pytest
+```text
+my-curl-app/
+├── .github/
+│   └── workflows/
+│       └── ci.yml          # GitHub Actions 自動化測試 (CI) 設定
+├── .gitignore              # 版控忽略檔案清單
+├── main.py                 # CLI 入口點與核心 HTTP 執行邏輯
+├── test_cli.py             # 針對參數解析與核心邏輯的 pytest 單元測試
+├── requirements.txt        # 專案依賴套件清單
+└── README.md               # 專案說明文件
