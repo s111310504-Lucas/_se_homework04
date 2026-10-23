@@ -1,4 +1,5 @@
-my-project/                                 # 專案根目錄 /br
+```text
+my-project/                                 # 專案根目錄
 ├── .gitignore                              # [檔] Git 忽略檔案設定 (排除 node_modules, target, e2e 報告)
 ├── package.json                            # [檔] (可選) 專案根目錄一鍵執行所有測試的腳本
 ├── backend/                                # [資料夾] Rust 後端專案
@@ -21,3 +22,4 @@ my-project/                                 # 專案根目錄 /br
     ├── playwright.config.ts                # [檔] Playwright 執行與自動啟動前後端 Server 的設定
     └── tests/                              # [資料夾] E2E 測試腳本
         └── example.spec.ts                 # [檔] 無頭瀏覽器自動化測試腳本
+```
