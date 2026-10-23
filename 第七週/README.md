@@ -1,4 +1,4 @@
-my-project/                                 # 專案根目錄
+my-project/                                 # 專案根目錄 /br
 ├── .gitignore                              # [檔] Git 忽略檔案設定 (排除 node_modules, target, e2e 報告)
 ├── package.json                            # [檔] (可選) 專案根目錄一鍵執行所有測試的腳本
 ├── backend/                                # [資料夾] Rust 後端專案
