@@ -7,11 +7,9 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
-  
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://localhost:5173',
     trace: 'on-first-retry',
-    headless: true,
   },
 
   projects: [
@@ -21,17 +19,17 @@ export default defineConfig({
     },
   ],
 
-  // 自動啟動服務：跑 E2E 前先自動啟動 Backend 與 Frontend
+  // 自動啟動前後端 Server
   webServer: [
     {
       command: 'cd ../backend && cargo run',
-      url: 'http://localhost:8080/health', // 等待後端啟動完成
+      url: 'http://127.0.0.1:8080/health',
       reuseExistingServer: !process.env.CI,
       timeout: 120 * 1000,
     },
     {
       command: 'cd ../frontend && npm run dev',
-      url: 'http://localhost:3000',        // 等待前端啟動完成
+      url: 'http://localhost:5173',
       reuseExistingServer: !process.env.CI,
       timeout: 120 * 1000,
     },
