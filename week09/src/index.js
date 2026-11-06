@@ -32,8 +32,8 @@ export default {
       </head>
       <body>
         <div class="card">
-          <h1>🚀 Cloudflare Worker 測試專案</h1>
-          <p>這是現代軟體工程第九週作業範例。</p>
+          <h1>🚀 Cloudflare Worker 小專案</h1>
+          <p>這是現代軟體工程第九週作業。</p>
           <button onclick="fetchApi()">呼叫後端 API</button>
           <div id="result">點擊按鈕以取得資料...</div>
         </div>
