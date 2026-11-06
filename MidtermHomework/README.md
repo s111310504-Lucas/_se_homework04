@@ -8,4 +8,4 @@
 | 6      | docker              | 否               |                    |                                                                                                    |
 | 7      | 網站測試            | 是               |                    | [第七週](https://github.com/s111310504-Lucas/_se_homework04/tree/main/%E7%AC%AC%E4%B8%83%E9%80%B1) |
 | 8      | 有價值專案          | 否               |                    |                                                                                                    |
-| 9      | cloudflare 網站專案 | 正在做           |                    |                                                                                                    |
+| 9      | cloudflare 網站專案 | 是               |                    |                                                                                                    |
