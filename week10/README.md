@@ -6,3 +6,7 @@
 
 ```bash
 npm install @s111310504/cf-edge-limiter
+
+
+### npm 發布畫面
+![npm 套件頁面](https://github.com/s111310504-Lucas/_se_homework04/blob/main/week10/image/test.png)
