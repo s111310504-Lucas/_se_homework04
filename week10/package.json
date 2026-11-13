@@ -1,6 +1,6 @@
 {
     "name": "@s111310504/cf-edge-limiter",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Zero-dependency rate limiter compatible with Cloudflare Workers and Node.js",
     "keywords": [
         "cloudflare",
