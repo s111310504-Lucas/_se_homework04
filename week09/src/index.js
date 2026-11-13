@@ -1,21 +1,21 @@
 export default {
-    async fetch(request, env, ctx) {
-        const url = new URL(request.url);
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
 
-        // 1. 後端 API 路由：取得伺服器時間與訊息
-        if (url.pathname === "/api/info") {
-            const data = {
-                message: "Hello from Cloudflare Workers!",
-                timestamp: new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei" }),
-                author: "Lucas"
-            };
-            return new Response(JSON.stringify(data), {
-                headers: { "content-type": "application/json;charset=UTF-8" }
-            });
-        }
+    // 1. 後端 API 路由：取得伺服器時間與訊息
+    if (url.pathname === "/api/info") {
+      const data = {
+        message: "Hello from Cloudflare Workers!",
+        timestamp: new Date().toLocaleString("zh-TW", { timeZone: "Asia/Taipei" }),
+        author: "s111310504"
+      };
+      return new Response(JSON.stringify(data), {
+        headers: { "content-type": "application/json;charset=UTF-8" }
+      });
+    }
 
-        // 2. 前端 HTML 頁面
-        const html = `
+    // 2. 前端 HTML 頁面
+    const html = `
       <!DOCTYPE html>
       <html lang="zh-TW">
       <head>
@@ -53,8 +53,8 @@ export default {
       </html>
     `;
 
-        return new Response(html, {
-            headers: { "content-type": "text/html;charset=UTF-8" }
-        });
-    }
+    return new Response(html, {
+      headers: { "content-type": "text/html;charset=UTF-8" }
+    });
+  }
 };
