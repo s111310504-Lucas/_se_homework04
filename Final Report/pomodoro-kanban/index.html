@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>番茄鐘與任務管理看板</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f8fafc;
+      --accent: #ef4444;
+      --green: #10b981;
+      --blue: #3b82f6;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .timer-box {
+      background: var(--card);
+      padding: 24px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 24px;
+      border: 1px solid #334155;
+    }
+
+    .time-display {
+      font-size: 4rem;
+      font-weight: bold;
+      font-variant-numeric: tabular-nums;
+      margin: 12px 0;
+    }
+
+    .active-task-badge {
+      color: #fbbf24;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      min-height: 1.4em;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 600;
+      transition: 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: #334155;
+      color: white;
+    }
+
+    .btn-sm {
+      padding: 4px 8px;
+      font-size: 0.8rem;
+    }
+
+    .add-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input,
+    select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #334155;
+      background: var(--card);
+      color: white;
+    }
+
+    input[type="text"] {
+      flex: 1;
+    }
+
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .column {
+      background: var(--card);
+      padding: 16px;
+      border-radius: 12px;
+      min-height: 350px;
+    }
+
+    .column h3 {
+      margin-top: 0;
+      border-bottom: 2px solid #334155;
+      padding-bottom: 8px;
+    }
+
+    .task-card {
+      background: #0f172a;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 4px solid var(--blue);
+    }
+
+    .task-card.selected {
+      border-left-color: var(--accent);
+      background: #1e1b4b;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🍅 番茄鐘 × 任務管理看板</h1>
+      <button id="export-btn" data-testid="export-json-btn" class="btn-secondary">匯出 JSON 備份</button>
+    </header>
+
+    <section class="timer-box">
+      <div>
+        <button id="mode-work" data-testid="mode-work-btn" class="btn-primary">專注 25 分鐘</button>
+        <button id="mode-break" data-testid="mode-break-btn" class="btn-secondary">休息 5 分鐘</button>
+      </div>
+      <div id="time-display" data-testid="timer-display" class="time-display">25:00</div>
+      <div id="active-task-label" class="active-task-badge">尚未綁定專注任務（可從下方看板選擇）</div>
+      <div>
+        <button id="start-btn" data-testid="start-timer-btn" class="btn-primary">開始</button>
+        <button id="pause-btn" data-testid="pause-timer-btn" class="btn-secondary">暫停</button>
+        <button id="reset-btn" data-testid="reset-timer-btn" class="btn-secondary">重置</button>
+      </div>
+    </section>
+
+    <form id="add-task-form" class="add-form">
+      <input type="text" id="task-title-input" data-testid="task-input" placeholder="輸入新任務名稱..." required />
+      <input type="number" id="task-est-input" data-testid="task-est-input" value="1" min="1" max="10"
+        style="width: 70px;" title="預估番茄數" />
+      <button type="submit" data-testid="add-task-btn" class="btn-primary">+ 新增任務</button>
+    </form>
+
+    <main class="board">
+      <div class="column" data-testid="col-todo">
+        <h3>📋 待辦 (Todo)</h3>
+        <div id="list-todo"></div>
+      </div>
+      <div class="column" data-testid="col-doing">
+        <h3>🔥 進行中 (Doing)</h3>
+        <div id="list-doing"></div>
+      </div>
+      <div class="column" data-testid="col-done">
+        <h3>✅ 已完成 (Done)</h3>
+        <div id="list-done"></div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
