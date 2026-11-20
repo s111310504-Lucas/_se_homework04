@@ -1,0 +1,58 @@
+name: Final Report CI/CD (Test & Deploy)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Final Report/pomodoro-kanban/**'
+      - '.github/workflows/final-report.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Final Report/pomodoro-kanban
+    steps:
+      - name: 1. 取得程式碼
+        uses: actions/checkout@v4
+
+      - name: 2. 設定 Node.js 環境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 3. 安裝專案套件
+        run: npm ci
+
+      - name: 4. 執行 Vitest 單元測試與系統測試 (含覆蓋率)
+        run: npx vitest run --coverage
+
+      - name: 5. 安裝 Playwright 瀏覽器並執行 E2E 測試
+        run: |
+          npx playwright install chromium --with-deps
+          npx playwright test
+
+      - name: 6. 建置正式版網頁 (Build)
+        run: npm run build
+
+      - name: 7. 上傳 GitHub Pages 成品
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: Final Report/pomodoro-kanban/dist
+
+  deploy:
+    needs: test-and-build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: 部署至 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
