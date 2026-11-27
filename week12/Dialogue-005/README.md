@@ -90,7 +90,7 @@
 
 回顧這四個階段，你已經徹底掌握了現代 AI Agent 的核心建構原理：
 
-$$\text{AI Agent} = \text{LLM（大腦）} + \text{Memory \& Prompt（記憶與人設）} + \text{Tools（手腳）} + \text{Agent Loop（自主思考迴圈）}$$
+$$\text{AI Agent} = \text{LLM（大腦）} + \text{Memory and Prompt（記憶與人設）} + \text{Tools（手腳）} + \text{Agent Loop（自主思考迴圈）}$$
 
 1. **純粹 LLM API：** 只能一問一答的博學顧問。
 2. **加上記憶與人設：** 變成記得上下文、懂規矩的聊天機器人。
